@@ -24,14 +24,12 @@ public class Converter implements IConverter {
     private String OperationListarLibrosRegistrados() {
         var response = _literAluraService.getLibrosRegistrados();
         var libros = new StringBuilder();
-        response.forEach(libro -> {
-            libros.append("----- LIBRO -----\n")
-                    .append("Titulo: ").append(libro.titulo()).append("\n")
-                    .append("Autor: ").append(libro.autor()).append("\n")
-                    .append("Idioma: ").append(libro.idioma()).append("\n")
-                    .append("Numero de descargas: ").append(libro.numeroDescargas()).append("\n")
-                    .append("------------------\n\n");
-        });
+        response.forEach(libro -> libros.append("----- LIBRO -----\n")
+                .append("Titulo: ").append(libro.titulo()).append("\n")
+                .append("Autor: ").append(libro.autor()).append("\n")
+                .append("Idioma: ").append(libro.idioma()).append("\n")
+                .append("Numero de descargas: ").append(libro.numeroDescargas()).append("\n")
+                .append("------------------\n\n"));
         return libros.toString();
     }
 

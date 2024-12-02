@@ -2,7 +2,7 @@ package org.alura.literalura.View;
 
 public class Main {
 
-    private IViewConverter _viewConverter;
+    private final IViewConverter _viewConverter;
 
     public Main(IViewConverter viewConverter) {
         _viewConverter = viewConverter;

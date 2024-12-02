@@ -1,13 +1,13 @@
 package org.alura.literalura.View;
 
 public interface IViewConverter {
-    public void printMenu();
+    void printMenu();
 
-    public int getValueOption();
+    int getValueOption();
 
-    public void processConvert(int numberOption, String[] params);
+    void processConvert(int numberOption, String[] params);
 
-    public void printExit();
+    void printExit();
 
-    public String[] getParams(int numberOption);
+    String[] getParams(int numberOption);
 }

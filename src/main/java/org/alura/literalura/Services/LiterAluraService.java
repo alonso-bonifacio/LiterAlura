@@ -15,7 +15,7 @@ public class LiterAluraService implements ILiterAluraService {
 
     private final IAutorRepository _autorRepository;
     private final ILibroRepository _libroRepository;
-    private IApiGutendex _apiGutendex;
+    private final IApiGutendex _apiGutendex;
 
     public LiterAluraService(IAutorRepository autorRepository, ILibroRepository libroRepository, IApiGutendex apiGutendex) {
         _autorRepository = autorRepository;
