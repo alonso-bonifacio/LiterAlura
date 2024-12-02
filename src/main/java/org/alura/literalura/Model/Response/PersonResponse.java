@@ -11,28 +11,4 @@ public class PersonResponse {
     public int AnioDeNacimento;
     @JsonAlias("death_year")
     public int AnioDeFallecimiento;
-
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String nombre) {
-        Nombre = nombre;
-    }
-
-    public int getAnioDeNacimento() {
-        return AnioDeNacimento;
-    }
-
-    public void setAnioDeNacimento(int anioDeNacimento) {
-        AnioDeNacimento = anioDeNacimento;
-    }
-
-    public int getAnioDeFallecimiento() {
-        return AnioDeFallecimiento;
-    }
-
-    public void setAnioDeFallecimiento(int anioDeFallecimiento) {
-        AnioDeFallecimiento = anioDeFallecimiento;
-    }
 }

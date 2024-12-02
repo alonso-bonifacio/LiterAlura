@@ -2,14 +2,16 @@ package org.alura.literalura.Api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.alura.literalura.Model.Response.GutendexResponse;
+import org.springframework.stereotype.Component;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class ApiGutendex {
-    public static final String API_URL = "https://gutendex.com/books?search=";
+@Component
+public class ApiGutendex implements IApiGutendex {
+    public static final String API_URL = "https://gutendex.com/books/?search=";
 
     public GutendexResponse convert(String search) {
         var client = HttpClient.newHttpClient();
