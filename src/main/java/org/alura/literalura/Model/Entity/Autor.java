@@ -17,14 +17,6 @@ public class Autor {
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Libro> libros;
 
-    public long getId() {
-        return Id;
-    }
-
-    public void setId(long id) {
-        Id = id;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -51,9 +43,5 @@ public class Autor {
 
     public List<Libro> getLibros() {
         return libros;
-    }
-
-    public void setLibros(List<Libro> libros) {
-        this.libros = libros;
     }
 }

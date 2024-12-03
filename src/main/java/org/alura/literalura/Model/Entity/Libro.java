@@ -16,14 +16,6 @@ public class Libro {
     @JoinColumn(name = "autor_id")
     private Autor autor;
 
-    public long getId() {
-        return Id;
-    }
-
-    public void setId(long id) {
-        Id = id;
-    }
-
     public String getIdioma() {
         return idioma;
     }
