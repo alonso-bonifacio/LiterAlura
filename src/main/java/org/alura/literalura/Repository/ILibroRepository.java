@@ -7,6 +7,5 @@ import java.util.Optional;
 
 public interface ILibroRepository extends JpaRepository<Libro, Long> {
 
-
-    Optional<Libro> getLibroByTituloContains(String titulo);
+    Optional<Libro> getFirstByTituloContainsIgnoreCase(String titulo);
 }

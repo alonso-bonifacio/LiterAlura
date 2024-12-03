@@ -2,6 +2,7 @@ package org.alura.literalura.View;
 
 import org.alura.literalura.Controller.IConverter;
 import org.alura.literalura.Shared.Constants.Menu;
+import org.alura.literalura.Shared.Constants.Option;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
@@ -34,19 +35,36 @@ public class ViewConverter implements IViewConverter {
         return Integer.parseInt(valueOption);
     }
 
-    public void processConvert(int numberOption, String[] params) {
+    public void processConvert(int numberOption, Object param) {
         if (numberOption != -1) {
-            var result = _converter.ResolverOperation(numberOption, params);
+            var result = _converter.ResolverOperation(numberOption, param);
             System.out.println(result);
             System.out.println();
         }
     }
 
-    public String[] getParams(int numberOption) {
-        String[] params = new String[1];
-        System.out.println("Ingrese el nombre del libro");
-        params[0] = sc.nextLine();
-        return params;
+    public Object getParams(int numberOption) {
+        switch (numberOption) {
+            case Option.LIBRO_POR_TITULO -> {
+                System.out.println("Ingrese el nombre del libro que desea buscar:");
+                return sc.nextLine();
+            }
+            case Option.AUTORES_VIVOS_EN_ANIO -> {
+                System.out.println("Ingrese el año vivo de autor(es) que desea buscar:");
+                return sc.nextLine();
+            }
+            case Option.LIBROS_POR_IDIOMA -> {
+                System.out.println("Ingrese el idioma para buscar los libros:");
+                System.out.println("es- español");
+                System.out.println("en- inglés");
+                System.out.println("fr- portugués");
+                System.out.println("pt- portugués");
+                return sc.nextLine();
+            }
+            default -> {
+                return "";
+            }
+        }
     }
 
     public void printExit() {

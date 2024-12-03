@@ -5,9 +5,9 @@ public interface IViewConverter {
 
     int getValueOption();
 
-    void processConvert(int numberOption, String[] params);
+    void processConvert(int numberOption, Object param);
 
     void printExit();
 
-    String[] getParams(int numberOption);
+    Object getParams(int numberOption);
 }

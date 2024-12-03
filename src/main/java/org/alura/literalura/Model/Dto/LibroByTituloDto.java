@@ -7,3 +7,4 @@ public record LibroByTituloDto(String titulo, String autor, String idioma, int n
         this(libro.getTitulo(), libro.getAutor().getNombre(), libro.getIdioma(), libro.getNumeroDescargas());
     }
 }
+

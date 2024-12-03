@@ -1,6 +1,7 @@
 package org.alura.literalura.Services;
 
 import org.alura.literalura.Api.IApiGutendex;
+import org.alura.literalura.Model.Dto.AutoresDto;
 import org.alura.literalura.Model.Dto.LibroByTituloDto;
 import org.alura.literalura.Model.Entity.Autor;
 import org.alura.literalura.Model.Entity.Libro;
@@ -9,6 +10,7 @@ import org.alura.literalura.Repository.ILibroRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LiterAluraService implements ILiterAluraService {
@@ -24,14 +26,18 @@ public class LiterAluraService implements ILiterAluraService {
     }
 
     @Override
-    public LibroByTituloDto getLibroByTitulo(String titulo) {
+    public Optional<LibroByTituloDto> getLibroByTitulo(String titulo) {
 
-        var libro = _libroRepository.getLibroByTituloContains(titulo);
+        var libro = _libroRepository.getFirstByTituloContainsIgnoreCase(titulo);
         if (libro.isPresent()) {
-            return new LibroByTituloDto(libro.get());
+            return Optional.of(new LibroByTituloDto(libro.get()));
         }
 
-        var res = _apiGutendex.convert(titulo).resultado.get(0);
+        var response = _apiGutendex.convert(titulo).resultado;
+        if (response.isEmpty()) {
+            return Optional.empty();
+        }
+        var res = response.get(0);
         var autor = new Autor();
         autor.setNombre(res.Autores.get(0).Nombre);
         autor.setAnioNacimiento(res.Autores.get(0).AnioDeNacimento);
@@ -44,12 +50,18 @@ public class LiterAluraService implements ILiterAluraService {
         libroNuevo.setIdioma(res.Idiomas.get(0));
         libroNuevo.setNumeroDescargas(res.NumeroDeDescargas);
         _libroRepository.save(libroNuevo);
-        return new LibroByTituloDto(libroNuevo);
+        return Optional.of(new LibroByTituloDto(libroNuevo));
     }
 
     @Override
     public List<LibroByTituloDto> getLibrosRegistrados() {
         var libros = _libroRepository.findAll();
         return libros.stream().map(LibroByTituloDto::new).toList();
+    }
+
+    @Override
+    public List<AutoresDto> getAutoresRegistrados() {
+        var autores = _autorRepository.findAll();
+        return autores.stream().map(AutoresDto::new).toList();
     }
 }
